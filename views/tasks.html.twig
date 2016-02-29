@@ -6,7 +6,7 @@
     <h1>Tasks</h1>
 
     {% if tasks is not empty %}
-        <p>Here are all your tasks:</p>
+    <p>Here are all of your tasks:</p>
 
             {% for task in tasks %}
                 {% if task.getComplete == 0 %}
@@ -21,7 +21,7 @@
                 </ul>
                 {% else %}
                 <ul>
-                    <li><a href="/tasks/{{ task.getId }}">{{ task.getDescription }}</a>, due {{ task.getDueDate }}</li>
+                    <li><a href="/tasks/{{ task.getId }}">{{ task.getDescription }}</a>, due {{ task.getDueDate }}, COMPLETED!</li>
                 </ul>
                 {% endif %}
             {% endfor %}
@@ -36,6 +36,7 @@
     </form>
 
     <form action='/delete_tasks' method='post'>
+        <input name="_method" type="hidden" value="delete">
         <button type='submit'>Clear</button>
     </form>
 

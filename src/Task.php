@@ -73,6 +73,7 @@
         static function deleteAll()
         {
           $GLOBALS['DB']->exec("DELETE FROM tasks;");
+          $GLOBALS['DB']->exec("DELETE FROM categories_tasks;");
         }
 
         function deleteOneTask()

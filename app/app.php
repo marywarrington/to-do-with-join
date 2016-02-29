@@ -5,6 +5,11 @@
 
     $app = new Silex\Application();
 
+    $app['debug'] = true;
+
+    use Symfony\Component\HttpFoundation\Request;
+    Request::enableHttpMethodParameterOverride();
+
     $server = 'mysql:host=localhost;dbname=to_do';
     $username = 'root';
     $password = 'root';
@@ -72,11 +77,11 @@
         return $app['twig']->render('task.html.twig', array('task' => $task, 'tasks' => Task::getAll(), 'categories' => $task->getCategories(), 'all_categories' => Category::getAll()));
     });
 
-    $app->post("/delete_tasks", function() use ($app) {
+    $app->delete("/delete_tasks", function() use ($app) {
         Task::deleteAll();
-        return $app['twig']->render('index.html.twig');
+        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
     });
-    $app->post("/delete_categories", function() use ($app) {
+    $app->delete("/delete_categories", function() use ($app) {
         Category::deleteAll();
         return $app['twig']->render('index.html.twig');
     });

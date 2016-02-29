@@ -59,6 +59,7 @@
         static function deleteAll()
         {
           $GLOBALS['DB']->exec("DELETE FROM categories;");
+          $GLOBALS['DB']->exec("DELETE FROM categories_tasks;");
         }
 
         static function find($search_id)
