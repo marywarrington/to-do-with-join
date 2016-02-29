@@ -3,12 +3,14 @@
     {
         private $description;
         private $due_date;
+        private $complete;
         private $id;
 
-        function __construct($description, $due_date, $id = null)
+        function __construct($description, $due_date, $complete = false, $id = null)
         {
             $this->description = $description;
             $this->due_date = $due_date;
+            $this->complete = $complete;
             $this->id = $id;
         }
 
@@ -32,6 +34,16 @@
             return $this->due_date;
         }
 
+        function getComplete()
+        {
+            return $this->complete;
+        }
+
+        function setComplete($new_complete)
+        {
+            $this->complete = $new_complete;
+        }
+
         function getId()
         {
             return $this->id;
@@ -39,7 +51,7 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO tasks (description, due_date) VALUES ('{$this->getDescription()}', '{$this->getDueDate()}')");
+            $GLOBALS['DB']->exec("INSERT INTO tasks (description, due_date, complete) VALUES ('{$this->getDescription()}', '{$this->getDueDate()}', '{$this->getComplete()}')");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
@@ -50,8 +62,9 @@
             foreach($returned_tasks as $task) {
                 $description = $task['description'];
                 $due_date = $task['due_date'];
+                $complete = $task['complete'];
                 $id = $task['id'];
-                $new_task = new Task($description, $due_date, $id);
+                $new_task = new Task($description, $due_date, $complete, $id);
                 array_push($tasks, $new_task);
             }
             return $tasks;
