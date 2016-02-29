@@ -10,7 +10,11 @@
         <p>Here are the tasks for this category:</p>
         <ul>
             {% for task in tasks %}
-                <li>{{ task.getDescription }}, due {{ task.getDueDate }}</li>
+                {% if task.getComplete == 0 %}
+                    <li>{{ task.getDescription }}, due {{ task.getDueDate }}</li>
+                {% else %}
+                    <li>{{ task.getDescription }} COMPLETED!</li>
+                {% endif %}
             {% endfor %}
         </ul>
     {% endif %}
