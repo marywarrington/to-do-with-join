@@ -79,6 +79,26 @@
             //Assert
             $this->assertEquals($new_name, $result);
         }
+        function test_delete()
+        {
+            //Arrange
+            $name = "Work stuff";
+            $test_Category = new Category($name);
+            $test_Category->save();
+
+            $name2 = "Home stuff";
+            $test_Category2 = new Category($name);
+            $test_Category2->save();
+
+            //Act
+            $test_Category->delete();
+            $result = Category::getAll();
+
+            //Assert
+            $this->assertEquals([$test_Category2], $result);
+        }
+
+
 
         function test_getAll()
         {

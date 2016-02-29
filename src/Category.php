@@ -65,6 +65,11 @@
           $this->setName($new_name);
         }
 
+        function delete()
+        {
+          $GLOBALS['DB']->exec("DELETE FROM categories WHERE id = {$this->getId()};");
+        }
+
         static function deleteAll()
         {
           $GLOBALS['DB']->exec("DELETE FROM categories;");
