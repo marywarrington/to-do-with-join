@@ -62,6 +62,11 @@
           $GLOBALS['DB']->exec("DELETE FROM tasks;");
         }
 
+        function deleteOneTask()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM tasks WHERE id = {$this->getId()};");
+        }
+
         static function find($search_id)
         {
             $found_task = null;

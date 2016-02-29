@@ -176,5 +176,25 @@
               $this->assertEquals($new_description, $test_task->getDescription());
               $this->assertEquals($new_due_date, $test_task->getDueDate());
           }
+
+          function test_deleteOneTask()
+
+          {
+              $id = null;
+              $description = "Wash the dog";
+              $due_date = "2016-02-29";
+              $test_task = new Task($description, $due_date, $id);
+              $test_task->save();
+
+              $description2 = "Water the lawn";
+              $due_date2 = "2016-02-24";
+              $test_task2 = new Task($description2, $due_date2, $id);
+              $test_task2->save();
+
+              $test_task->deleteOneTask();
+              $result = Task::getAll();
+
+              $this->assertEquals([$test_task2], $result);
+          }
       }
  ?>
