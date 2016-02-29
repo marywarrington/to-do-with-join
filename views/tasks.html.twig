@@ -9,17 +9,17 @@
         <p>Here are all your tasks:</p>
 
             {% for task in tasks %}
-                {% if task.getComplete == false %}
+                {% if task.getComplete == 0 %}
                 <ul>
                     <li><a href="/tasks/{{ task.getId }}">{{ task.getDescription }}</a>, due {{ task.getDueDate }}
 
-                        <form class="" action="/tasks/{ task.getId }/complete" method="post">
+                        <form class="" action="/tasks/{{ task.getId }}/complete" method="post">
                             <input name="_method" type="hidden" value="patch">
                             <button type="submit" name="button">Complete</button>
                         </form>
                     </li>
                 </ul>
-                {% elseif task.getComplete == true %}
+                {% else %}
                 <ul>
                     <li><a href="/tasks/{{ task.getId }}">{{ task.getDescription }}</a>, due {{ task.getDueDate }}</li>
                 </ul>

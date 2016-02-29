@@ -43,7 +43,7 @@
     $app->patch("/tasks/{id}/complete", function($id) use ($app) {
         $task = Task::find($id);
         $task->complete();
-        return $app['twig']->render('task.html.twig', array('task' => $task, 'categories' => $task->getCategories(), 'all_categories' => Category::getAll()));
+        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
     });
 
     $app->get("/categories/{id}", function($id) use ($app) {
