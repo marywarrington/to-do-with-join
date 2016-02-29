@@ -63,6 +63,23 @@
             $this->assertEquals($test_Category, $result[0]);
         }
 
+        function test_update()
+        {
+            //Arrange
+            $name = "Work stuff";
+            $test_Category = new Category($name);
+            $test_Category->save();
+
+            $new_name = "Job Stuff";
+
+            //Act
+            $test_Category->update($new_name);
+            $result = $test_Category->getName();
+
+            //Assert
+            $this->assertEquals($new_name, $result);
+        }
+
         function test_getAll()
         {
             //Arrange
