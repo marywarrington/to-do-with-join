@@ -161,7 +161,8 @@
 
             $description = "File reports";
             $due_date = "2017-01-01";
-            $test_task = new Task($description, $due_date, $id);
+            $complete = 0;
+            $test_task = new Task($description, $due_date, $complete, $id);
             $test_task->save();
 
             $test_category->addTask($test_task);
@@ -178,12 +179,13 @@
 
             $description = "Wash the dog";
             $due_date = "2017-01-01";
-            $test_task = new Task($description, $due_date, $id);
+            $complete = 0;
+            $test_task = new Task($description, $due_date, $complete, $id);
             $test_task->save();
 
             $description2 = "Take out the trash";
             $due_date2 = "2017-02-02";
-            $test_task2 = new Task($description2, $due_date2, $id);
+            $test_task2 = new Task($description2, $due_date2, $complete, $id);
             $test_task2->save();
 
             $test_category->addTask($test_task);
@@ -201,7 +203,8 @@
 
             $description = "File reports";
             $due_date = "1999-01-01";
-            $test_task = new Task($description, $due_date, $id);
+            $complete = 0;
+            $test_task = new Task($description, $due_date, $complete, $id);
             $test_task->save();
 
             $test_category->addTask($test_task);
