@@ -7,11 +7,24 @@
 
     {% if tasks is not empty %}
         <p>Here are all your tasks:</p>
-        <ul>
+
             {% for task in tasks %}
-                <li><a href="/tasks/{{ task.getId }}">{{ task.getDescription }}</a>, due {{ task.getDueDate }}</li>
+                {% if task.getComplete == false %}
+                <ul>
+                    <li><a href="/tasks/{{ task.getId }}">{{ task.getDescription }}</a>, due {{ task.getDueDate }}
+
+                        <form class="" action="/tasks/{ task.getId }/complete" method="post">
+                            <input name="_method" type="hidden" value="patch">
+                            <button type="submit" name="button">Complete</button>
+                        </form>
+                    </li>
+                </ul>
+                {% elseif task.getComplete == true %}
+                <ul>
+                    <li><a href="/tasks/{{ task.getId }}">{{ task.getDescription }}</a>, due {{ task.getDueDate }}</li>
+                </ul>
+                {% endif %}
             {% endfor %}
-        </ul>
     {% endif %}
 
     <form action='/tasks' method='post'>

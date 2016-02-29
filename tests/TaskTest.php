@@ -281,6 +281,20 @@
               $this->assertEquals([], $test_category->getTasks());
           }
 
+          function test_complete()
+          {
+              $description = "File reports";
+              $due_date = "1999-01-01";
+              $complete = false;
+              $id = null;
+              $test_task = new Task($description, $due_date, $complete, $id);
+              $test_task->save();
+
+              $test_task->complete();
+
+              $this->assertEquals(true, $test_task->getComplete());
+          }
+
 
       }
  ?>

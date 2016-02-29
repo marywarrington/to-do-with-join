@@ -101,6 +101,12 @@
             $this->setDueDate($new_date);
         }
 
+        function complete()
+        {
+            $GLOBALS['DB']->exec("UPDATE tasks SET complete = 1 WHERE id = {$this->getId()};");
+            $this->setComplete(1);
+        }
+
         function addCategory($category)
         {
             $GLOBALS['DB']->exec("INSERT INTO categories_tasks(category_id, task_id) VALUES ({$category->getId()}, {$this->getId()});");
